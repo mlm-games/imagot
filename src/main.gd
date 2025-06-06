@@ -15,7 +15,9 @@ var current_index: int = -1
 
 # state variables for camera control
 var is_panning: bool = false
+var is_moving: bool = false
 var pan_start_pos: Vector2
+var move_start_pos: Vector2
 
 # Godot's runtime-loadable image formats
 const SUPPORTED_EXTENSIONS = ["png", "jpg", "jpeg", "webp", "bmp", "tga", "svg", "exr", "hdr"]
@@ -65,30 +67,43 @@ func update_status_bar() -> void:
 		zoom_percent, rot_degrees
 	]
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Panning with Middle Mouse Button
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
-		if event.is_pressed():
-			is_panning = true
-			pan_start_pos = camera.get_global_mouse_position()
-		else:
-			is_panning = false
-
-	if is_panning and event is InputEventMouseMotion:
-		# Panning moves the camera in the opposite direction of the mouse drag
-		camera.position -= event.relative / camera.zoom
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			if event.is_pressed():
+				is_panning = true
+				pan_start_pos = event.position
+			else:
+				is_panning = false
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				is_moving = true
+				move_start_pos = event.position
+			else:
+				is_moving = false
+	
+	
+	if event is InputEventMouseMotion:
+		print(event)
+		if is_panning:
+			camera.position -= event.relative / camera.zoom
+		if is_moving:
+			camera.position -= event.relative
+			
+	
 
 	# Zooming with Mouse Wheel (to mouse position)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			_handle_zoom(1.25)
+			_handle_zoom_at_point(1.05, event.position)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			_handle_zoom(0.8)
+			_handle_zoom_at_point(0.95, event.position)
 	
+	# Keyboard shortcuts
 	if event.is_action_pressed("zoom_in"):
-		_handle_zoom(1.25)
+		_handle_zoom_center(1.25)
 	if event.is_action_pressed("zoom_out"):
-		_handle_zoom(0.8)
+		_handle_zoom_center(0.8)
 	if event.is_action_pressed("zoom_fit"):
 		_on_zoom_fit_pressed()
 	if event.is_action_pressed("actual_size"):
@@ -104,7 +119,67 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("show_properties"):
 		_show_properties_dialog()
 
-func _handle_zoom(zoom_multiplier: float, at_mouse_position = false) -> void:
+func _handle_zoom_at_point(zoom_factor: float, screen_position: Vector2) -> void:
+	if not image_sprite.texture: return
+	
+	# Get the viewport and its rect
+	var viewport = %SubViewport
+	var viewport_rect = %ViewportContainer.get_global_rect()
+	
+	# Convert screen position to viewport position
+	var viewport_position = screen_position - viewport_rect.position
+	
+	# Get the world position before zoom
+	var world_pos_before = camera.get_global_transform().affine_inverse() * viewport_position
+	
+	# Apply zoom
+	var old_zoom = camera.zoom
+	var new_zoom = old_zoom * zoom_factor
+	new_zoom = new_zoom.clamp(Vector2(0.1, 0.1), Vector2(10.0, 10.0))
+	camera.zoom = new_zoom
+	
+	# Get the world position after zoom
+	var world_pos_after = camera.get_global_transform().affine_inverse() * viewport_position
+	
+	# Adjust camera position to keep the same world point under the mouse
+	camera.position += world_pos_before - world_pos_after
+	
+	update_status_bar()
+
+func _handle_zoom_center(zoom_factor: float) -> void:
+	if not image_sprite.texture: return
+	
+	var old_zoom = camera.zoom
+	var new_zoom = old_zoom * zoom_factor
+	new_zoom = new_zoom.clamp(Vector2(0.1, 0.1), Vector2(10.0, 10.0))
+	camera.zoom = new_zoom
+	
+	update_status_bar()
+
+func _connect_signals() -> void:
+	# File
+	%OpenButton.pressed.connect(_on_open_pressed)
+	file_dialog.file_selected.connect(_on_file_selected)
+	# Navigation
+	%PrevButton.pressed.connect(_on_prev_pressed)
+	%NextButton.pressed.connect(_on_next_pressed)
+	# View
+	%ZoomOutButton.pressed.connect(func(): _handle_zoom(0.8))
+	%ZoomInButton.pressed.connect(func(): _handle_zoom(1.25))
+	%ZoomFitButton.pressed.connect(_on_zoom_fit_pressed)
+	%ActualSizeButton.pressed.connect(_on_actual_size_pressed)
+	# Transform
+	%RotateLeftButton.pressed.connect(_on_rotate_left_pressed)
+	%RotateRightButton.pressed.connect(_on_rotate_right_pressed)
+	%FlipHButton.pressed.connect(_on_flip_h_pressed)
+	%FlipVButton.pressed.connect(_on_flip_v_pressed)
+	# Info
+	%PropertiesButton.pressed.connect(_show_properties_dialog)
+	# Resize event to keep the viewport updated
+	get_window().size_changed.connect(func(): %SubViewport.size = %ViewportContainer.size)
+
+
+func _handle_zoom(zoom_multiplier: float) -> void:
 	if not image_sprite.texture: return
 	
 	var old_zoom = camera.zoom
@@ -143,29 +218,6 @@ func _show_properties_dialog() -> void:
 	%ValueFormat.text = current_image_path.get_extension().to_upper()
 	
 	properties_dialog.popup_centered()
-
-func _connect_signals() -> void:
-	# File
-	%OpenButton.pressed.connect(_on_open_pressed)
-	file_dialog.file_selected.connect(_on_file_selected)
-	# Navigation
-	%PrevButton.pressed.connect(_on_prev_pressed)
-	%NextButton.pressed.connect(_on_next_pressed)
-	# View
-	%ZoomOutButton.pressed.connect(func(): _handle_zoom(0.8))
-	%ZoomInButton.pressed.connect(func(): _handle_zoom(1.25))
-	%ZoomFitButton.pressed.connect(_on_zoom_fit_pressed)
-	%ActualSizeButton.pressed.connect(_on_actual_size_pressed)
-	# Transform
-	%RotateLeftButton.pressed.connect(_on_rotate_left_pressed)
-	%RotateRightButton.pressed.connect(_on_rotate_right_pressed)
-	%FlipHButton.pressed.connect(_on_flip_h_pressed)
-	%FlipVButton.pressed.connect(_on_flip_v_pressed)
-	# Info
-	%PropertiesButton.pressed.connect(_show_properties_dialog)
-	# Resize event to keep the viewport updated
-	get_window().size_changed.connect(func(): %SubViewport.size = %ViewportContainer.size)
-
 
 func _handle_launch_args() -> void:
 	var args = OS.get_cmdline_args()

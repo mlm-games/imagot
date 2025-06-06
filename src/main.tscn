@@ -129,6 +129,7 @@ stretch_mode = 5
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/ViewportContainer"]
 unique_name_in_owner = true
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(1152, 595)
 render_target_update_mode = 4
 
@@ -139,6 +140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="ImageSprite" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
@@ -150,6 +152,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
