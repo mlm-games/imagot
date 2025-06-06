@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cixcpnexd1gj6"]
+[gd_scene load_steps=5 format=3 uid="uid://cixcpnexd1gj6"]
 
 [ext_resource type="Script" uid="uid://c1fo5amunywqw" path="res://src/main.gd" id="1_ig7tw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q4h7"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v3h2d"]
+viewport_path = NodePath("VBoxContainer/ViewportContainer/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1v0n"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -11,111 +20,218 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ig7tw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.176471, 0.176471, 0.188235, 1)
-metadata/_edit_use_anchors_ = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-metadata/_edit_use_anchors_ = true
+[node name="ToolBar" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0q4h7")
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ToolBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="OpenButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-metadata/_edit_use_anchors_ = true
+tooltip_text = "Open an Image (Ctrl+O)"
+text = "Open"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="PrevButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Previous Image (Left Arrow)"
+text = "<"
+
+[node name="NextButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Next Image (Right Arrow)"
+text = ">"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
+layout_mode = 2
+
+[node name="ZoomOutButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Zoom Out (Ctrl+-)"
+text = "-"
+
+[node name="ZoomInButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Zoom In (Ctrl+=)"
+text = "+"
+
+[node name="ZoomFitButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Fit to Window (Ctrl+0)"
+text = "Fit"
+
+[node name="ActualSizeButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Actual Size / 100% Zoom (Ctrl+1)"
+text = "1:1"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
+layout_mode = 2
+
+[node name="RotateLeftButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Rotate Left (Ctrl+L)"
+text = "RotL"
+
+[node name="RotateRightButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Rotate Right (Ctrl+R)"
+text = "RotR"
+
+[node name="FlipHButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Flip Horizontal"
+text = "Flip H"
+
+[node name="FlipVButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Flip Vertical"
+text = "Flip V"
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
+layout_mode = 2
+
+[node name="PropertiesButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Image Properties (Ctrl+I)"
+text = "Info"
+
+[node name="ViewportContainer" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_v3h2d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/ViewportContainer"]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1152, 595)
+render_target_update_mode = 4
+
+[node name="Checkerboard" type="ColorRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -58.5
-offset_top = -23.0
-offset_right = 58.5
 grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="ImageSprite" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
+unique_name_in_owner = true
+anchor_mode = 0
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="StatusBar" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1v0n")
 
 [node name="StatusLabel" type="Label" parent="VBoxContainer/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="ToolBar" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-alignment = 1
-
-[node name="OpenButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Open an Image"
-
-[node name="PrevButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Previous Image"
-
-[node name="NextButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Next Image"
-
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/ToolBar"]
-layout_mode = 2
-
-[node name="ZoomOutButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Zoom Out"
-
-[node name="ZoomInButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Zoom In"
-
-[node name="ZoomFitButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Zoom Fit"
-
-[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/ToolBar"]
-layout_mode = 2
-
-[node name="RotateLeftButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Rotate Left"
-
-[node name="RotateRightButton" type="Button" parent="VBoxContainer/ToolBar"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Rotate Right"
+text = "Open an image to begin..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
 title = "Open a File"
+initial_position = 1
+size = Vector2i(600, 400)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png", "*.jpg", "*.jpeg", "*.webp", "*.bmp", "*.tga")
+filters = PackedStringArray("*.png, *.jpg, *.jpeg, *.webp, *.bmp, *.tga, *.svg, *.exr, *.hdr")
+
+[node name="PropertiesDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Image Properties"
+initial_position = 1
+size = Vector2i(400, 250)
+ok_button_text = "Close"
+
+[node name="GridContainer" type="GridContainer" parent="PropertiesDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 392.0
+offset_bottom = 188.0
+columns = 2
+
+[node name="LabelName" type="Label" parent="PropertiesDialog/GridContainer"]
+layout_mode = 2
+text = "File Name:"
+
+[node name="ValueName" type="Label" parent="PropertiesDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+
+[node name="LabelPath" type="Label" parent="PropertiesDialog/GridContainer"]
+layout_mode = 2
+text = "Full Path:"
+
+[node name="ValuePath" type="Label" parent="PropertiesDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+
+[node name="LabelDims" type="Label" parent="PropertiesDialog/GridContainer"]
+layout_mode = 2
+text = "Dimensions:"
+
+[node name="ValueDims" type="Label" parent="PropertiesDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LabelSize" type="Label" parent="PropertiesDialog/GridContainer"]
+layout_mode = 2
+text = "File Size:"
+
+[node name="ValueSize" type="Label" parent="PropertiesDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LabelFormat" type="Label" parent="PropertiesDialog/GridContainer"]
+layout_mode = 2
+text = "Format:"
+
+[node name="ValueFormat" type="Label" parent="PropertiesDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
