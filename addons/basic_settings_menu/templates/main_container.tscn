@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://8aplryjdjkcd"]
+
+[node name="MainTabContainer" type="VBoxContainer"]
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true

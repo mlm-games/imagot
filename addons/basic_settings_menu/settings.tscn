@@ -1,0 +1,250 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp42fom7cc3n0"]
+
+[ext_resource type="Script" uid="uid://dmkvyoeagnqhr" path="res://addons/basic_settings_menu/settings.gd" id="2_m8nmd"]
+[ext_resource type="PackedScene" uid="uid://d1kniiwptb48v" path="res://addons/basic_settings_menu/templates/option_container.tscn" id="3_3nbua"]
+[ext_resource type="PackedScene" uid="uid://bgjpgqx8f3igh" path="res://addons/basic_settings_menu/templates/int_container.tscn" id="4_3fk36"]
+[ext_resource type="PackedScene" uid="uid://cml6f2nq185vt" path="res://addons/basic_settings_menu/templates/boolean_container.tscn" id="5_2n80e"]
+[ext_resource type="PackedScene" uid="uid://b3c7l5vjqgd12" path="res://addons/basic_settings_menu/templates/slider_setting_container.tscn" id="6_hqw76"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2n80e"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_m8nmd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0.531784, 0.601641, 0.781793, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2n80e")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+current_tab = 0
+
+[node name="MENU_OPTIONS_ACCESSIBILITY" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Accessibility" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="FontLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI_LABEL_FONT"
+
+[node name="FontOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FontSizeLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI_LABEL_FONT_SIZE"
+
+[node name="FontSizeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility"]
+visible = false
+layout_mode = 2
+alignment = 2
+
+[node name="FontSizeSpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility/FontSizeContainer"]
+layout_mode = 2
+max_value = 128.0
+rounded = true
+alignment = 1
+
+[node name="CurrentLocale" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_ACCESSIBILITY/PanelContainer/MarginContainer/Accessibility" instance=ExtResource("3_3nbua")]
+layout_mode = 2
+setting_name = &"Language"
+
+[node name="MENU_OPTIONS_GAMEPLAY" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Gameplay" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MaxFPS" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer/Gameplay" instance=ExtResource("4_3fk36")]
+layout_mode = 2
+setting_name = &"FPS"
+
+[node name="HideTouchButtons" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer/Gameplay" instance=ExtResource("5_2n80e")]
+visible = false
+layout_mode = 2
+setting_name = &"UI_LABEL_HIDE_BUTTONS"
+
+[node name="LazyMode" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer/Gameplay" instance=ExtResource("5_2n80e")]
+layout_mode = 2
+setting_name = &"Lazy Mode"
+
+[node name="PauseOnLostFocus" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer/Gameplay" instance=ExtResource("5_2n80e")]
+layout_mode = 2
+setting_name = &"Pause On Lost Focus"
+
+[node name="ShowDamageNumbers" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_GAMEPLAY/PanelContainer/MarginContainer/Gameplay" instance=ExtResource("5_2n80e")]
+layout_mode = 2
+setting_name = &"Show Damage Numbers"
+
+[node name="MENU_OPTIONS_VIDEO" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Video" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO/PanelContainer/MarginContainer/Video" instance=ExtResource("5_2n80e")]
+layout_mode = 2
+setting_name = &"Fullscreen"
+
+[node name="Borderless" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO/PanelContainer/MarginContainer/Video" instance=ExtResource("5_2n80e")]
+layout_mode = 2
+setting_name = &"Borderless"
+
+[node name="Resolution" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_VIDEO/PanelContainer/MarginContainer/Video" instance=ExtResource("3_3nbua")]
+layout_mode = 2
+setting_name = &"Resolution"
+
+[node name="MENU_OPTIONS_SOUND" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+metadata/_tab_index = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Audio" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MasterVolume" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio" instance=ExtResource("6_hqw76")]
+layout_mode = 2
+setting_name = &"Volume"
+
+[node name="MasterBeepPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio/MasterVolume"]
+
+[node name="MusicVolume" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio" instance=ExtResource("6_hqw76")]
+layout_mode = 2
+setting_name = &"Music volume"
+
+[node name="MusicBeepPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio/MusicVolume"]
+
+[node name="SfxVolume" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio" instance=ExtResource("6_hqw76")]
+layout_mode = 2
+setting_name = &"Sound effect volume"
+
+[node name="SfxBeepPlayer" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/TabContainer/MENU_OPTIONS_SOUND/PanelContainer/MarginContainer/Audio/SfxVolume"]
+
+[node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "MENU_LABEL_APPLY_AND_SAVE"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+layout_mode = 2
+text = "MENU_LABEL_BACK"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/BackButton" to="." method="_on_back_button_pressed"]
