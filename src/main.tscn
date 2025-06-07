@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cixcpnexd1gj6"]
+[gd_scene load_steps=12 format=3 uid="uid://cixcpnexd1gj6"]
 
 [ext_resource type="Script" uid="uid://c1fo5amunywqw" path="res://src/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://c8p0dgj0p8nas" path="res://assets/icons/folder.svg" id="2_5q4o7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b61e40g8rc5wt" path="res://assets/icons/zoom-icon.svg" id="5_kmhfv"]
 [ext_resource type="Texture2D" uid="uid://b4m0bp85cp8a5" path="res://assets/icons/rotate.svg" id="6_kmhfv"]
 [ext_resource type="Texture2D" uid="uid://qy8fnc1b5bdg" path="res://assets/icons/rotate-left.svg" id="7_rlaii"]
+[ext_resource type="Texture2D" uid="uid://vox5g0nmjmhv" path="res://assets/icons/bg.svg" id="8_5mrjc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q4h7"]
 bg_color = Color(0.14902, 0.14902, 0.239216, 1)
@@ -145,6 +146,7 @@ render_target_update_mode = 4
 
 [node name="Checkerboard" type="ColorRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -152,6 +154,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.181923, 0.20081, 0.237358, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
+repeat_size = Vector2(25, 25)
+repeat_times = 1000
+
+[node name="Checkerboard2" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/Parallax2D"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.227451)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_5mrjc")
+stretch_mode = 1
 
 [node name="ImageSprite" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -166,7 +186,6 @@ mouse_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
-anchor_mode = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 editor_draw_limits = true

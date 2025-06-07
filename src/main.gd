@@ -24,6 +24,7 @@ const SUPPORTED_EXTENSIONS = ["png", "jpg", "jpeg", "webp", "bmp", "tga", "svg",
 
 
 func _ready() -> void:
+	%OpenButton.grab_focus()
 	camera.make_current()
 
 	_connect_signals()
@@ -102,8 +103,9 @@ func _gui_input(event: InputEvent) -> void:
 			_handle_zoom_at_point(1.01, event.position)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_handle_zoom_at_point(0.99, event.position)
-	
-	# Keyboard shortcuts
+
+func _unhandled_input(event: InputEvent) -> void:
+		# Keyboard shortcuts
 	if event.is_action_pressed("zoom_in"):
 		_handle_zoom_center(1.25)
 	if event.is_action_pressed("zoom_out"):
@@ -287,7 +289,7 @@ func _on_zoom_fit_pressed() -> void:
 	camera.zoom = Vector2.ONE * min(scale_x, scale_y)
 	
 	# Center the camera on the image
-	camera.position = viewport_container.size/2 - image_size / 2.0
+	camera.position = viewport_container.size/2  #- Vector2(image_size.x/2, image_size.y/2)
 	
 	update_status_bar()
 
