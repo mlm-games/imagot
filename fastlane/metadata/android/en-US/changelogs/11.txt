@@ -1,1 +1,1 @@
-- Update release.yml by @ragebreaker
+- add the files to upload to aur for testing by @mlm-studios
