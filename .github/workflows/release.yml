@@ -67,7 +67,7 @@ jobs:
           exclude-patterns: 'Update version to,Merge ,Auto-generate changelog'
           auto-commit: 'true'
           commit-message: 'Update release notes for v{{version}}'
-#          metainfo-path: './others/flathub/io.github.mlm_games.pomodorot.metainfo.xml'  # TODO: Change here when copying
+#          metainfo-path: './others/flathub/io.github.mlm_games.imagot.metainfo.xml'  # TODO: Change here when copying
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -224,7 +224,7 @@ jobs:
       - name: Update Chocolatey nuspec version
         shell: pwsh
         run: |
-          $nuspecPath = ".\chocolatey\pomodorot.nuspec"
+          $nuspecPath = ".\chocolatey\imagot.nuspec"
           $content = Get-Content $nuspecPath
           $content = $content -replace "<version>.*</version>", "<version>${{ inputs.version_name }}</version>"
           $content | Set-Content $nuspecPath
@@ -234,7 +234,7 @@ jobs:
         run: |
           # Get the SHA256 hash from the checksums file
           $checksumFile = Get-Content ".\choco-package\SHA256SUMS.txt"
-          $exeFileName = "pomodorot.exe"
+          $exeFileName = "imagot.exe"
           $hashLine = $checksumFile | Where-Object { $_ -match "$exeFileName$" }
           if ($hashLine) {
             $hash = ($hashLine -split '\s+')[0]
@@ -249,7 +249,7 @@ jobs:
           # Update the chocolateyinstall.ps1 file
           $installPath = ".\chocolatey\tools\chocolateyinstall.ps1"
           $content = Get-Content $installPath
-          $content = $content -replace "url\s*=\s*'.*'", "url = 'https://github.com/mlm-games/pomodorot/releases/download/${{ inputs.version_name }}/pomodorot.exe'"
+          $content = $content -replace "url\s*=\s*'.*'", "url = 'https://github.com/mlm-games/imagot/releases/download/${{ inputs.version_name }}/imagot.exe'"
           $content = $content -replace "checksum\s*=\s*'.*'", "checksum = '$hash'"
           $content | Set-Content $installPath
 
@@ -260,8 +260,8 @@ jobs:
         env:
           CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
         run: |
-          choco pack .\chocolatey\pomodorot.nuspec
-          choco push pomodorot.${{ inputs.version_name }}.nupkg --source https://push.chocolatey.org/ --api-key $env:CHOCO_API_KEY
+          choco pack .\chocolatey\imagot.nuspec
+          choco push imagot.${{ inputs.version_name }}.nupkg --source https://push.chocolatey.org/ --api-key $env:CHOCO_API_KEY
 
   publish-winget:
     needs: [prepare-and-build]
@@ -277,7 +277,7 @@ jobs:
       - name: Submit to WinGet
         uses: vedantmgoyal2009/winget-releaser@v2
         with:
-          identifier: MLMGames.Pomodorot
+          identifier: MLMGames.Imagot
           version: ${{ inputs.version_name }}
           release-tag: ${{ inputs.version_name }}
           token: ${{ secrets.GITHUB_TOKEN }}

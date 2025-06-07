@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Imagot
+GenericName=Imagot
+Comment=Image viewer made in Godot!
+Exec=imagot
+Terminal=false
+Icon=io.github.mlm_games.imagot
+Type=Application
+Categories=System;Utility;
