@@ -41,9 +41,9 @@ func apply_settings(reload_and_apply: bool = false) -> void:
 		var video = settings["video"]
 		if video.has("fullscreen"):
 			if video["fullscreen"]:
-				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			else:
-				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				DisplayServer.window_set_mode.call_deferred(DisplayServer.WINDOW_MODE_WINDOWED)
 		
 		if video.has("borderless"):
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, video["borderless"])
@@ -89,7 +89,7 @@ func apply_settings(reload_and_apply: bool = false) -> void:
 
 
 
-const DEFAULT_SETTINGS = {
+static var DEFAULT_SETTINGS = {
 	"accessibility": {
 			"current_locale": "en",
 			"small_text_font_size": 20,
@@ -103,9 +103,9 @@ const DEFAULT_SETTINGS = {
 			"lazy_mode": false,
 		},
 	"video": {
-			"borderless": false,
-			"fullscreen": false,
-			"resolution": Vector2i(1080, 720),
+			"borderless": ProjectSettings.get_setting("display/window/size/borderless"),
+			"fullscreen": ProjectSettings.get_setting("display/window/size/mode"),
+			"resolution": Vector2i(ProjectSettings.get_setting("display/window/size/viewport_width"), ProjectSettings.get_setting("display/window/size/viewport_height")),
 		},
 	"audio": {
 			"Master": 0.5,

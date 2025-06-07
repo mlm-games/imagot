@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/basic_settings_menu/plugin.cfg")
 
 theme/custom="uid://bt255sn41frcj"
 theme/custom_font="uid://djfubdyodv78o"
+theme/default_font_multichannel_signed_distance_field=true
 theme/default_font_generate_mipmaps=true
 
 [input]
