@@ -1,0 +1,1 @@
+- add maximized as default to fix blurry opening by @mlm-studios
