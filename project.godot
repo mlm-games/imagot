@@ -14,17 +14,31 @@ config/name="Imagot"
 config/description="A image viewer in Godot"
 run/main_scene="uid://cixcpnexd1gj6"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
+run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=16666
 boot_splash/bg_color=Color(0.0924416, 0.147392, 0.187741, 1)
 config/icon="res://icon.svg"
 
 [autoload]
 
-WindowManager="*res://autoloads/window_manager.gd"
 SettingsData="*res://addons/basic_settings_menu/settings_data.gd"
+WindowManager="*res://autoloads/window_manager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/basic_settings_menu/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://bt255sn41frcj"
+theme/custom_font="uid://djfubdyodv78o"
+theme/default_font_generate_mipmaps=true
 
 [input]
 
@@ -85,5 +99,19 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 textures/vram_compression/import_etc2_astc=true
+textures/default_filters/anisotropic_filtering_level=4
+anti_aliasing/quality/msaa_2d=2
 environment/defaults/default_clear_color=Color(0.0823529, 0.0941176, 0.160784, 1)
+anti_aliasing/quality/screen_space_aa=1
+gui/theme/default_font_antialiasing=2
+gui/theme/default_font_hinting=1
+gui/theme/default_font_subpixel_positioning=1
+environment/glow/enabled=false
+environment/volumetric_fog/enabled=false
+environment/ssao/enabled=false
+environment/ssil/enabled=false
+environment/sdfgi/enabled=false
+lights_and_shadows/directional_shadow/enabled=false
+lights_and_shadows/positional_shadow/enabled=false

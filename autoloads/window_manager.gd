@@ -30,6 +30,7 @@ func enter_fullscreen():
 
 func exit_fullscreen():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	_restore_window_state()
 	fullscreen_changed.emit(false)
 

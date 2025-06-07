@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cixcpnexd1gj6"]
+[gd_scene load_steps=11 format=3 uid="uid://cixcpnexd1gj6"]
 
 [ext_resource type="Script" uid="uid://c1fo5amunywqw" path="res://src/main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c8p0dgj0p8nas" path="res://assets/icons/folder.svg" id="2_5q4o7"]
+[ext_resource type="Texture2D" uid="uid://bcdghpwke2an6" path="res://assets/icons/left-arrow.svg" id="2_gh0ne"]
+[ext_resource type="Texture2D" uid="uid://jes53crik3bs" path="res://assets/icons/right-arrow.svg" id="4_fyndt"]
+[ext_resource type="Texture2D" uid="uid://b61e40g8rc5wt" path="res://assets/icons/zoom-icon.svg" id="5_kmhfv"]
+[ext_resource type="Texture2D" uid="uid://b4m0bp85cp8a5" path="res://assets/icons/rotate.svg" id="6_kmhfv"]
+[ext_resource type="Texture2D" uid="uid://qy8fnc1b5bdg" path="res://assets/icons/rotate-left.svg" id="7_rlaii"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q4h7"]
-bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+bg_color = Color(0.14902, 0.14902, 0.239216, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v3h2d"]
 viewport_path = NodePath("VBoxContainer/ViewportContainer/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1v0n"]
-bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+bg_color = Color(0.144318, 0.144314, 0.232494, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -42,18 +48,20 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Open an Image (Ctrl+O)"
 text = "Open"
+icon = ExtResource("2_5q4o7")
 
 [node name="PrevButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Previous Image (Left Arrow)"
-text = "<"
+icon = ExtResource("2_gh0ne")
+icon_alignment = 1
 
 [node name="NextButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Next Image (Right Arrow)"
-text = ">"
+icon = ExtResource("4_fyndt")
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
 layout_mode = 2
@@ -63,12 +71,14 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Zoom Out (Ctrl+-)"
 text = "-"
+icon = ExtResource("5_kmhfv")
 
 [node name="ZoomInButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Zoom In (Ctrl+=)"
 text = "+"
+icon = ExtResource("5_kmhfv")
 
 [node name="ZoomFitButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
@@ -89,13 +99,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Rotate Left (Ctrl+L)"
-text = "RotL"
+icon = ExtResource("6_kmhfv")
 
 [node name="RotateRightButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Rotate Right (Ctrl+R)"
-text = "RotR"
+icon = ExtResource("7_rlaii")
 
 [node name="FlipHButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
@@ -141,7 +151,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.2, 0.2, 0.2, 1)
+color = Color(0.181923, 0.20081, 0.237358, 1)
 
 [node name="ImageSprite" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -157,6 +167,8 @@ mouse_filter = 2
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
 anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 

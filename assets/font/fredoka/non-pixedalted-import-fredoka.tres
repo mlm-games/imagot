@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cmpn3cy7j08bb"]
+
+[ext_resource type="FontFile" uid="uid://djfubdyodv78o" path="res://assets/font/fredoka/static/Fredoka_SemiCondensed-Medium.ttf" id="1_q0bv8"]
+
+[resource]
+base_font = ExtResource("1_q0bv8")

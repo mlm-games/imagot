@@ -103,7 +103,7 @@ const DEFAULT_SETTINGS = {
 			"lazy_mode": false,
 		},
 	"video": {
-			"borderless": false,
+			"borderless": true,
 			"fullscreen": true,
 			"resolution": Vector2i(1080, 720),
 		},

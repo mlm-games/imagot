@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="rotate.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="20.34375"
+     inkscape:cx="20.25192"
+     inkscape:cy="14.623656"
+     inkscape:window-width="1536"
+     inkscape:window-height="902"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path3"
+       style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#d3e1ff;stroke:#1a1a1a;stroke-width:0.73664494;stroke-linecap:round;enable-background:accumulate;stop-color:#000000;stroke-linejoin:round;fill-opacity:1"
+       d="M 24.804688 5.5507812 L 22.6875 8.9882812 C 21.705478 8.1530822 20.617045 7.5041326 19.470703 7.0390625 C 15.242561 5.3237098 10.214657 6.1311238 6.7324219 9.4765625 C 2.0894427 13.937146 1.8461349 21.323653 6.1855469 26.080078 C 10.52496 30.836503 17.902822 31.270044 22.769531 27.054688 A 1.3993881 1.3993881 0 0 0 22.914062 25.080078 A 1.3993881 1.3993881 0 0 0 20.9375 24.939453 C 17.19482 28.181217 11.591075 27.851227 8.2539062 24.193359 C 4.9167376 20.535493 5.1012517 14.924494 8.671875 11.494141 C 12.181429 8.1224553 17.665106 8.1024284 21.195312 11.408203 L 18.515625 15.755859 L 27.052734 14.941406 C 27.799805 14.870126 28.247802 14.418071 28.056641 13.925781 L 24.804688 5.5507812 z " />
+  </g>
+</svg>

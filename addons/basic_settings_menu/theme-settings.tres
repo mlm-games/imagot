@@ -1,4 +1,7 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bt255sn41frcj"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bt255sn41frcj"]
+
+[ext_resource type="Texture2D" uid="uid://bcdghpwke2an6" path="res://assets/icons/left-arrow.svg" id="1_vk44x"]
+[ext_resource type="Texture2D" uid="uid://c8p0dgj0p8nas" path="res://assets/icons/folder.svg" id="2_cdrl6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g20on"]
 bg_color = Color(0.772116, 0.796353, 0.897034, 1)
@@ -36,8 +39,11 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkrfv"]
+bg_color = Color(0.0570313, 0.154641, 0.218556, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pgd0"]
-bg_color = Color(0.24, 0.15, 0.19, 1)
+bg_color = Color(0.233493, 0.215458, 0.332974, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -98,6 +104,9 @@ Button/colors/font_focus_color = Color(0.522131, 0.0381378, 0.535528, 1)
 Button/styles/focus = SubResource("StyleBoxFlat_g20on")
 Button/styles/normal = SubResource("StyleBoxFlat_4a8sc")
 Button/styles/pressed = SubResource("StyleBoxFlat_ngavk")
+FileDialog/icons/back_folder = ExtResource("1_vk44x")
+FileDialog/icons/folder = ExtResource("2_cdrl6")
+FileDialog/styles/panel = SubResource("StyleBoxFlat_qkrfv")
 GridContainer/constants/v_separation = 20
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0pgd0")
 ScalerButton/base_type = &"Button"

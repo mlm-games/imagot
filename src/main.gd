@@ -32,8 +32,20 @@ func _ready() -> void:
 
 
 func load_image(path: String) -> void:
+	
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		status_label.text = "Error: Cannot open file: %s" % path
+		return
+	
+	var buffer = file.get_buffer(file.get_length())
+	file.close()
+	var err
 	var image = Image.new()
-	var err = image.load(path)
+	if path.get_extension() == "jpeg":
+		err = image.load_jpg_from_buffer(buffer)
+	else:
+		err = image.call("load_" + path.get_extension() + "_from_buffer", buffer)
 
 	if err != OK:
 		status_label.text = "Error: Could not load image at %s" % path
@@ -62,42 +74,34 @@ func update_status_bar() -> void:
 	var zoom_percent = int(camera.zoom.x * 100)
 	var rot_degrees = int(image_sprite.rotation_degrees)
 	
-	status_label.text = "%s | %dx%d | Zoom: %d%% | Rotation: %d°" % [
+	status_label.text = "%s | %dx%d | Zoom: %d%% | Rotation: %d° | Position: %dx%d" % [
 		current_image_path.get_file(), image_size.x, image_size.y,
-		zoom_percent, rot_degrees
+		zoom_percent, rot_degrees, camera.position.x, camera.position.y
 	]
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_MIDDLE:
+		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_pressed():
 				is_panning = true
 				pan_start_pos = event.position
 			else:
 				is_panning = false
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.is_pressed():
-				is_moving = true
-				move_start_pos = event.position
-			else:
-				is_moving = false
 	
 	
 	if event is InputEventMouseMotion:
-		print(event)
+		#print(event)
 		if is_panning:
 			camera.position -= event.relative / camera.zoom
-		if is_moving:
-			camera.position -= event.relative
-			
+			update_status_bar()
 	
 
 	# Zooming with Mouse Wheel (to mouse position)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			_handle_zoom_at_point(1.05, event.position)
+			_handle_zoom_at_point(1.01, event.position)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			_handle_zoom_at_point(0.95, event.position)
+			_handle_zoom_at_point(0.99, event.position)
 	
 	# Keyboard shortcuts
 	if event.is_action_pressed("zoom_in"):
@@ -122,8 +126,6 @@ func _gui_input(event: InputEvent) -> void:
 func _handle_zoom_at_point(zoom_factor: float, screen_position: Vector2) -> void:
 	if not image_sprite.texture: return
 	
-	# Get the viewport and its rect
-	var viewport = %SubViewport
 	var viewport_rect = %ViewportContainer.get_global_rect()
 	
 	# Convert screen position to viewport position
@@ -151,7 +153,9 @@ func _handle_zoom_center(zoom_factor: float) -> void:
 	
 	var old_zoom = camera.zoom
 	var new_zoom = old_zoom * zoom_factor
-	new_zoom = new_zoom.clamp(Vector2(0.1, 0.1), Vector2(10.0, 10.0))
+	if new_zoom == 0.1:
+		new_zoom = -new_zoom * 10
+	#new_zoom = new_zoom.clamp(Vector2(0.1, 0.1), Vector2(10.0, 10.0))
 	camera.zoom = new_zoom
 	
 	update_status_bar()
@@ -221,10 +225,14 @@ func _show_properties_dialog() -> void:
 
 func _handle_launch_args() -> void:
 	var args = OS.get_cmdline_args()
-	if args.size() > 1:
-		var potential_path = " ".join(args.slice(1))
-		if FileAccess.file_exists(potential_path):
-			load_image(potential_path)
+	if args.size() > 0:
+		var path : String = args[0]#" ".join(args.slice(1))
+		if FileAccess.file_exists(args[0]):
+			if SUPPORTED_EXTENSIONS.has(path.get_extension()):
+				print("Starter file exists and is supported")
+				load_image(args[0])
+		else :
+			print("NO")
 	
 	if current_image_path.is_empty():
 		status_label.text = "Open an image to begin..."
@@ -252,6 +260,7 @@ func _on_open_pressed() -> void:
 	file_dialog.popup_centered()
 
 func _on_file_selected(path: String) -> void:
+	print(path)
 	load_image(path)
 
 func _on_next_pressed() -> void:
