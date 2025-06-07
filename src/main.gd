@@ -28,7 +28,8 @@ func _ready() -> void:
 	camera.make_current()
 
 	_connect_signals()
-
+	
+	await get_tree().create_timer(0.1).timeout
 	_handle_launch_args()
 
 
