@@ -1,0 +1,1 @@
+- fix blurry start by call_deferred modes by @mlm-studios

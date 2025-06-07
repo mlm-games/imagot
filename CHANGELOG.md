@@ -1,3 +1,8 @@
+## v0.2.2
+
+- fix blurry start by call_deferred modes by @mlm-studios
+
+
 ## v0.2.1
 
 - add maximized as default to fix blurry opening by @mlm-studios
