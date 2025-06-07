@@ -1,3 +1,8 @@
+## v0.2.3
+
+- fix : make actual size center on image by @mlm-studios
+
+
 ## v0.2.2
 
 - fix blurry start by call_deferred modes by @mlm-studios
