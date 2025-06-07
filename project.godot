@@ -22,18 +22,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SettingsData="*res://addons/basic_settings_menu/settings_data.gd"
 WindowManager="*res://autoloads/window_manager.gd"
 
 [display]
 
-window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/basic_settings_menu/plugin.cfg")
 
 [gui]
 

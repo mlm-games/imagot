@@ -187,7 +187,7 @@ mouse_filter = 2
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
-position_smoothing_speed = 20.0
+position_smoothing_speed = 7.5
 editor_draw_limits = true
 editor_draw_drag_margin = true
 

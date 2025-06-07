@@ -295,7 +295,7 @@ func _on_zoom_fit_pressed() -> void:
 
 func _on_actual_size_pressed() -> void:
 	camera.zoom = Vector2.ONE
-	camera.position = Vector2.ZERO
+	camera.position = Vector2.ZERO + viewport_container.get_size()/2
 	update_status_bar()
 
 func _on_rotate_left_pressed() -> void:
