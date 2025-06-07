@@ -79,6 +79,10 @@ show_properties={
 ]
 }
 
+[input_devices]
+
+pointing/android/enable_pan_and_scale_gestures=true
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
