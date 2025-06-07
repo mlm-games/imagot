@@ -96,6 +96,7 @@ jobs:
               ln -s "/opt/${pkgname}/imagot" "${pkgdir}/usr/bin/imagot"
               
               install -Dm644 "$srcdir/icon.png" "${pkgdir}/usr/share/pixmaps/imagot.png"
+              install -Dm644 "$srcdir/icon.png" "${pkgdir}/usr/share/icons/imagot.png"
           
               cat > "${pkgdir}/usr/share/applications/imagot.desktop" << DESKTOP_EOF
           [Desktop Entry]
