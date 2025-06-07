@@ -1,0 +1,1 @@
+- add a timer to properly open img by @mlm-studios

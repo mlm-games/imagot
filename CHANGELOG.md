@@ -1,3 +1,8 @@
+## v0.2.4
+
+- add a timer to properly open img by @mlm-studios
+
+
 ## v0.2.3
 
 - fix : make actual size center on image by @mlm-studios
