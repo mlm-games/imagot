@@ -1,3 +1,9 @@
+## v0.2.6
+
+- change name of choco package, and scoop token properly by @mlm-studios
+- massive performance improvement and add some screenshots by @mlm-studios
+
+
 ## v0.2.5
 
 - Add scoop input in release.yml by @ragebreaker
