@@ -41,6 +41,11 @@ on:
         required: false
         default: 'false'
         type: boolean
+      publish_to_snap:
+        description: 'Publish to Snapcraft'
+        required: false
+        default: 'false'
+        type: boolean
 
 jobs:
   commit-vercode-changes:
@@ -339,6 +344,46 @@ jobs:
           git push
 
 
+  publish-snap:
+    needs: [prepare-and-build]
+    runs-on: ubuntu-latest
+    if: ${{ inputs.publish_to_snap == true }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Download Linux build
+        uses: actions/download-artifact@v4
+        with:
+          name: Linux-build
+          path: ./builds
+          
+      - name: Make executable
+        run: chmod +x ./builds/imagot
+        
+      - name: Copy icon
+        run: |
+          mkdir -p snap/gui
+          cp icon.png snap/gui/icon.png
+          
+      - name: Update version in snapcraft.yaml
+        run: |
+          sed -i "s/version: .*/version: '${{ inputs.version_name }}'/" snap/snapcraft.yaml
+          
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: build
+        
+      - name: Publish to Snap Store
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          release: stable
+
+
   update-aur:
     needs: [prepare-and-build]
     runs-on: ubuntu-latest
@@ -352,7 +397,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'test-aur-upload.yml',
+              workflow_id: 'aur-upload.yml',
               ref: 'main',
               inputs: {
                 version_name: '${{ inputs.version_name }}',
