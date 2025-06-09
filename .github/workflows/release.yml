@@ -31,6 +31,11 @@ on:
         required: false
         default: 'false'
         type: boolean
+      publish_to_scoop:
+        description: 'Publish to Scoop'
+        required: false
+        default: 'false'
+        type: boolean
       publish_to_aur:
         description: 'Publish to AUR'
         required: false
@@ -286,6 +291,7 @@ jobs:
   update-scoop-bucket:
     needs: [prepare-and-build]
     runs-on: ubuntu-latest
+    if: ${{ inputs.publish_to_scoop == true }}
     permissions:
       contents: write
     steps:
