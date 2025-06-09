@@ -32,7 +32,7 @@ on:
         default: 'false'
         type: boolean
       publish_to_scoop:
-        description: 'Publish to Scoop'
+        description: 'Manual Publish to Scoop'
         required: false
         default: 'false'
         type: boolean
@@ -313,7 +313,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/buckets-scoop  
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SCOOP_TOKEN }}
           path: scoop-bucket
 
       - name: Update Scoop manifest
