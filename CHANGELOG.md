@@ -1,3 +1,11 @@
+## v0.2.5
+
+- Add scoop input in release.yml by @ragebreaker
+- add choco scripts and other files by @mlm-studios
+- Update release.yml by @ragebreaker
+- Update release.yml by @ragebreaker
+
+
 ## v0.2.4
 
 - add a timer to properly open img by @mlm-studios

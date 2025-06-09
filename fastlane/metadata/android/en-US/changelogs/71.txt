@@ -1,0 +1,4 @@
+- Add scoop input in release.yml by @ragebreaker
+- add choco scripts and other files by @mlm-studios
+- Update release.yml by @ragebreaker
+- Update release.yml by @ragebreaker
