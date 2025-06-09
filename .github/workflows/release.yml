@@ -309,8 +309,15 @@ jobs:
       - name: Get SHA256 hash
         id: get-hash
         run: |
-          # Extract hash from SHA256SUMS.txt
-          HASH=$(grep "imagot.exe" ./windows-build/SHA256SUMS.txt | cut -d' ' -f1)
+
+          cd ./build-artifact
+          EXE_FILE=$(find . -name "*.exe" | head -n 1)
+          if [ -z "$EXE_FILE" ]; then
+            echo "::error::No EXE file found in artifact!"
+            exit 1
+          fi
+          EXE_NAME=$(basename "$EXE_FILE")
+          HASH=$(sha256sum "$EXE_NAME" | cut -d' ' -f1)
           echo "sha256=${HASH}" >> $GITHUB_OUTPUT
           echo "Found SHA256: ${HASH}"
 
