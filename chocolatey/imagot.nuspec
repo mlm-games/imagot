@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>imagot</id>
+    <version>0.10.2</version>
+    <title>Pomodorot</title>
+    <authors>mlmstudios</authors>
+    <projectUrl>https://github.com/mlm-games/imagot</projectUrl>
+    <licenseUrl>https://github.com/mlm-games/imagot/blob/main/LICENSE</licenseUrl>
+    <iconUrl>https://raw.githubusercontent.com/mlm-games/imagot/main/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple image viewer made in godot</description>
+    <summary>Image viewer</summary>
+    <tags>image viewer minimal simple</tags>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

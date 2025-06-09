@@ -44,10 +44,11 @@ func load_image(path: String) -> void:
 	file.close()
 	var err
 	var image = Image.new()
-	if path.get_extension() == "jpeg":
-		err = image.load_jpg_from_buffer(buffer)
-	else:
-		err = image.call("load_" + path.get_extension() + "_from_buffer", buffer)
+	match path.get_extension():
+		"jpeg":
+			err = image.load_jpg_from_buffer(buffer)
+		_:
+			err = image.call("load_" + path.get_extension() + "_from_buffer", buffer)
 
 	if err != OK:
 		status_label.text = "Error: Could not load image at %s" % path

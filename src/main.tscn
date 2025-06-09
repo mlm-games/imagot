@@ -155,23 +155,25 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.181923, 0.20081, 0.237358, 1)
 
-[node name="Parallax2D" type="Parallax2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
-repeat_size = Vector2(25, 25)
+[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/ViewportContainer/SubViewport"]
+layer = -1
+
+[node name="Parallax2D" type="Parallax2D" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer"]
+repeat_size = Vector2(40, 40)
 repeat_times = 1000
 
-[node name="Checkerboard2" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/Parallax2D"]
+[node name="Checkerboard2" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer/Parallax2D"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.227451)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 25.0
-offset_bottom = 25.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("8_5mrjc")
-stretch_mode = 1
 
 [node name="ImageSprite" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
@@ -187,8 +189,7 @@ mouse_filter = 2
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/SubViewport"]
 unique_name_in_owner = true
 position_smoothing_enabled = true
-position_smoothing_speed = 7.5
-editor_draw_limits = true
+position_smoothing_speed = 8.295
 editor_draw_drag_margin = true
 
 [node name="StatusBar" type="PanelContainer" parent="VBoxContainer"]
