@@ -160,7 +160,8 @@ layer = -1
 
 [node name="Parallax2D" type="Parallax2D" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer"]
 repeat_size = Vector2(40, 40)
-repeat_times = 1000
+repeat_times = 30
+ignore_camera_scroll = true
 
 [node name="Checkerboard2" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer/Parallax2D"]
 unique_name_in_owner = true
@@ -168,10 +169,13 @@ modulate = Color(1, 1, 1, 0.227451)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 536.0
+offset_top = 284.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(20, 20)
 mouse_filter = 2
 texture = ExtResource("8_5mrjc")
 
