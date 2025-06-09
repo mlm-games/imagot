@@ -1,0 +1,50 @@
+name: imagot
+base: core22
+version: '0.2.5'
+summary: Fast, lightweight image viewer built with Godot
+description: |
+  Imagot is a modern image viewer supporting PNG, JPG, JPEG, WebP, BMP, TGA, SVG, EXR, HDR and more.
+  Features include zoom, pan, rotate, flip, undo/redo, and keyboard navigation.
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
+apps:
+  imagot:
+    command: imagot
+    extensions: [gnome]
+    plugs:
+      - home
+      - removable-media
+      - network
+      - opengl
+      - x11
+      - wayland
+      - desktop
+      - desktop-legacy
+      - unity7
+    desktop: snap/gui/imagot.desktop
+
+parts:
+  imagot:
+    plugin: dump
+    source: ./builds/
+    source-type: local
+    stage-packages:
+      - libglu1-mesa
+      - libxcursor1
+      - libxinerama1
+      - libxrandr2
+      - libxi6
+      - libpulse0
+    override-build: |
+      snapcraftctl build
+      chmod +x $SNAPCRAFT_PART_INSTALL/imagot
+
+layout:
+  /usr/share/imagot:
+    bind: $SNAP/usr/share/imagot
