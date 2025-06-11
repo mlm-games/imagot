@@ -291,7 +291,7 @@ jobs:
           identifier: MLMGames.Imagot
           version: ${{ inputs.version_name }}
           release-tag: ${{ inputs.version_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WINGET_TOKEN }}
 
   update-scoop-bucket:
     needs: [prepare-and-build]
