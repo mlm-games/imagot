@@ -75,7 +75,7 @@ jobs:
           changelog-path: 'CHANGELOG.md'
           version-file-path: './fastlane/metadata/android/en-US/changelogs/${{ steps.prev_version.outputs.new_code }}.txt'
           version-code: '${{ steps.prev_version.outputs.new_code }}'
-          exclude-patterns: 'Update version to,Merge ,Auto-generate changelog'
+          exclude-patterns: 'Update ,Merge ,Auto-generate changelog'
           auto-commit: 'true'
           commit-message: 'Update release notes for v{{version}}'
           metainfo-path: './others/flathub/io.github.mlm_games.imagot.metainfo.xml'  # TODO: Change here when copying
