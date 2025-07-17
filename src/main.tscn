@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cixcpnexd1gj6"]
+[gd_scene load_steps=15 format=3 uid="uid://cixcpnexd1gj6"]
 
 [ext_resource type="Script" uid="uid://c1fo5amunywqw" path="res://src/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://c8p0dgj0p8nas" path="res://assets/icons/folder.svg" id="2_5q4o7"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b4m0bp85cp8a5" path="res://assets/icons/rotate.svg" id="6_kmhfv"]
 [ext_resource type="Texture2D" uid="uid://qy8fnc1b5bdg" path="res://assets/icons/rotate-left.svg" id="7_rlaii"]
 [ext_resource type="Texture2D" uid="uid://vox5g0nmjmhv" path="res://assets/icons/bg.svg" id="8_5mrjc"]
+[ext_resource type="Texture2D" uid="uid://cv66vyfsd42lf" path="res://assets/icons/info.svg" id="8_kf8lf"]
+[ext_resource type="Texture2D" uid="uid://cfrjy0thnab74" path="res://assets/icons/flip-h.svg" id="8_uewes"]
+[ext_resource type="Texture2D" uid="uid://d2du4oflacj5v" path="res://assets/icons/flip-v.svg" id="9_kqbth"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0q4h7"]
 bg_color = Color(0.14902, 0.14902, 0.239216, 1)
@@ -86,12 +89,14 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Fit to Window (Ctrl+0)"
 text = "Fit"
+icon = ExtResource("5_kmhfv")
 
 [node name="ActualSizeButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Actual Size / 100% Zoom (Ctrl+1)"
 text = "1:1"
+icon = ExtResource("5_kmhfv")
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
 layout_mode = 2
@@ -113,12 +118,14 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Flip Horizontal"
 text = "Flip H"
+icon = ExtResource("8_uewes")
 
 [node name="FlipVButton" type="Button" parent="VBoxContainer/ToolBar/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Flip Vertical"
 text = "Flip V"
+icon = ExtResource("9_kqbth")
 
 [node name="VSeparator3" type="VSeparator" parent="VBoxContainer/ToolBar/HBoxContainer"]
 layout_mode = 2
@@ -128,6 +135,7 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Image Properties (Ctrl+I)"
 text = "Info"
+icon = ExtResource("8_kf8lf")
 
 [node name="ViewportContainer" type="TextureRect" parent="VBoxContainer"]
 unique_name_in_owner = true
