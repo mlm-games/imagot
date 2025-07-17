@@ -152,17 +152,6 @@ gui_disable_input = true
 size = Vector2i(1152, 595)
 render_target_update_mode = 4
 
-[node name="Checkerboard" type="ColorRect" parent="VBoxContainer/ViewportContainer/SubViewport"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.181923, 0.20081, 0.237358, 1)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/ViewportContainer/SubViewport"]
 layer = -1
 
@@ -171,7 +160,7 @@ repeat_size = Vector2(40, 40)
 repeat_times = 30
 ignore_camera_scroll = true
 
-[node name="Checkerboard2" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer/Parallax2D"]
+[node name="Checkerboard" type="TextureRect" parent="VBoxContainer/ViewportContainer/SubViewport/CanvasLayer/Parallax2D"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.227451)
 anchors_preset = 15
@@ -211,7 +200,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f1v0n")
 [node name="StatusLabel" type="Label" parent="VBoxContainer/StatusBar"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Open an image to begin..."
+text = "Open an image to begin...
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -282,3 +272,23 @@ text = "Format:"
 [node name="ValueFormat" type="Label" parent="PropertiesDialog/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="FirstOpenLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -303.0
+offset_right = 576.0
+offset_bottom = 303.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=30][wave][outline_color=blue][outline_color=orange]Drag & Drop an image here or use the 'Open' button
+"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -32,10 +32,14 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	_handle_launch_args()
 	
+	get_tree().root.files_dropped.connect(_on_files_dropped)
 	OS.request_permissions()
+	
+	#%FirstOpenLabel.show()
 
 
 func load_image(path: String) -> void:
+	%FirstOpenLabel.hide()
 	
 	var file = FileAccess.open(path, FileAccess.READ)
 	if file == null:
@@ -128,6 +132,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_flip_v_pressed()
 	if event.is_action_pressed("show_properties"):
 		_show_properties_dialog()
+	if event.is_action_pressed("navigate_right"):
+		_on_next_pressed()
+		get_viewport().set_input_as_handled() # NOTE: Prevent other movements (doesn't work from arrows since the Toolbar takes the input (for now makes sense)
+	if event.is_action_pressed("navigate_left"):
+		_on_prev_pressed()
+		get_viewport().set_input_as_handled()
 
 func _handle_zoom_at_point(zoom_factor: float, screen_position: Vector2) -> void:
 	if not image_sprite.texture: return
@@ -160,7 +170,7 @@ func _handle_zoom_center(zoom_factor: float) -> void:
 	var old_zoom = camera.zoom
 	var new_zoom = old_zoom * zoom_factor
 	if new_zoom == 0.1:
-		new_zoom = -new_zoom * 10
+		new_zoom = - new_zoom * 10
 	#new_zoom = new_zoom.clamp(Vector2(0.1, 0.1), Vector2(10.0, 10.0))
 	camera.zoom = new_zoom
 	
@@ -217,7 +227,7 @@ func _show_properties_dialog() -> void:
 	var file_size_bytes = FileAccess.get_file_as_bytes(current_image_path).size()
 	var file_size_str = str(file_size_bytes) + " B"
 	if file_size_bytes > 1024 * 1024:
-		file_size_str = "%.2f MB" % (file_size_bytes / (1024.0*1024.0))
+		file_size_str = "%.2f MB" % (file_size_bytes / (1024.0 * 1024.0))
 	elif file_size_bytes > 1024:
 		file_size_str = "%.2f KB" % (file_size_bytes / 1024.0)
 
@@ -232,12 +242,12 @@ func _show_properties_dialog() -> void:
 func _handle_launch_args() -> void:
 	var args = OS.get_cmdline_args()
 	if args.size() > 0:
-		var path : String = args[0]#" ".join(args.slice(1))
+		var path: String = args[0] # " ".join(args.slice(1))
 		if FileAccess.file_exists(args[0]):
 			if SUPPORTED_EXTENSIONS.has(path.get_extension()):
 				print("Starter file exists and is supported")
 				load_image(args[0])
-		else :
+		else:
 			print("NO")
 	
 	if current_image_path.is_empty():
@@ -259,6 +269,12 @@ func scan_directory() -> void:
 		
 		directory_files.sort()
 		current_index = directory_files.find(current_image_path)
+
+func _on_files_dropped(files: PackedStringArray) -> void:
+	if files.size() > 0:
+		var path = files[0]
+		if SUPPORTED_EXTENSIONS.has(path.get_extension().to_lower()):
+			load_image(path)
 
 #  Signals
 
@@ -293,13 +309,13 @@ func _on_zoom_fit_pressed() -> void:
 	camera.zoom = Vector2.ONE * min(scale_x, scale_y)
 	
 	# Center the camera on the image
-	camera.position = viewport_container.size/2  #- Vector2(image_size.x/2, image_size.y/2)
+	camera.position = viewport_container.size / 2 # - Vector2(image_size.x/2, image_size.y/2)
 	
 	update_status_bar()
 
 func _on_actual_size_pressed() -> void:
 	camera.zoom = Vector2.ONE
-	camera.position = Vector2.ZERO + viewport_container.get_size()/2
+	camera.position = Vector2.ZERO + viewport_container.get_size() / 2
 	update_status_bar()
 
 func _on_rotate_left_pressed() -> void:
