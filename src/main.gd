@@ -31,6 +31,8 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(0.1).timeout
 	_handle_launch_args()
+	
+	OS.request_permissions()
 
 
 func load_image(path: String) -> void:
