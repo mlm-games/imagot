@@ -1,0 +1,7 @@
+- add 2 more icons, delete unused settings addon part by @mlm-games
+- add android permissions to rw by @mlm-games
+- Remove "Update " commits from changelog by @ragebreaker
+- Add lf enforcing for jsons by @mlm-studios
+- add snap yml and .desktop (for icon) by @mlm-studios
+- Rename test-aur-upload.yml to aur-upload.yml by @ragebreaker
+- Bring back parallel builds for consistency by @ragebreaker
