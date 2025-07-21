@@ -287,6 +287,7 @@ offset_right = 576.0
 offset_bottom = 303.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "[font_size=30][wave][outline_color=blue][outline_color=orange]Drag & Drop an image here or use the 'Open' button
 "

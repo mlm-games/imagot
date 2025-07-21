@@ -13,6 +13,8 @@ var current_image_path: String = ""
 var directory_files: Array[String] = []
 var current_index: int = -1
 
+var pinch_tween: Tween
+
 # state variables for camera control
 var is_panning: bool = false
 var is_moving: bool = false
@@ -138,6 +140,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("navigate_left"):
 		_on_prev_pressed()
 		get_viewport().set_input_as_handled()
+	#if event.is_action_pressed("pinch_zoom"):
+		#pinch_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
+		#pinch_tween.tween_method(_handle_zoom_at_point, 1, 1.2, 0.2)
 
 func _handle_zoom_at_point(zoom_factor: float, screen_position: Vector2) -> void:
 	if not image_sprite.texture: return
