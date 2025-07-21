@@ -70,6 +70,7 @@ jobs:
 
       - name: Generate Release Notes
         uses: mlm-games/release-notes-generator@main
+        if: ${{ inputs.auto_generate_changelog == true }}
         with:
           version: ${{ inputs.version_name }}
           changelog-path: 'CHANGELOG.md'
