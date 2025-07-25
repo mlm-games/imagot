@@ -140,6 +140,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("navigate_left"):
 		_on_prev_pressed()
 		get_viewport().set_input_as_handled()
+	if event is InputEventMagnifyGesture:
+		_handle_zoom_at_point(event.factor, get_global_mouse_position())
 	#if event.is_action_pressed("pinch_zoom"):
 		#pinch_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
 		#pinch_tween.tween_method(_handle_zoom_at_point, 1, 1.2, 0.2)
