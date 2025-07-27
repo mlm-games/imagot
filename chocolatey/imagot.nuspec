@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>imagot</id>
-    <version>0.10.2</version>
+    <version>0.2.7</version>
     <title>Imagot</title>
     <authors>mlmstudios</authors>
     <projectUrl>https://github.com/mlm-games/imagot</projectUrl>
