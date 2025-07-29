@@ -7,7 +7,7 @@
     <authors>mlmstudios</authors>
     <projectUrl>https://github.com/mlm-games/imagot</projectUrl>
     <licenseUrl>https://github.com/mlm-games/imagot/blob/main/LICENSE</licenseUrl>
-    <iconUrl>https://raw.githubusercontent.com/mlm-games/imagot/main/icon.png</iconUrl>
+    <iconUrl>https://cdn.statically.io/gh/mlm-games/imagot/0.2.7/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple image viewer made in godot</description>
     <summary>Image viewer</summary>
