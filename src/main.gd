@@ -304,14 +304,14 @@ func _on_prev_pressed() -> void:
 
 func _on_zoom_fit_pressed() -> void:
 	if not image_sprite.texture: return
-	
-	var view_size = viewport_container.size * 0.95 # Small padding
-	var image_size = image_sprite.texture.get_size()
+	var padding := 0.95 # Small padding
+	var view_size := viewport_container.size * padding 
+	var image_size := image_sprite.texture.get_size()
 	
 	if image_size.x == 0 or image_size.y == 0: return
 
-	var scale_x = view_size.x / image_size.x
-	var scale_y = view_size.y / image_size.y
+	var scale_x := view_size.x / image_size.x
+	var scale_y := view_size.y / image_size.y
 	
 	camera.zoom = Vector2.ONE * min(scale_x, scale_y)
 	
