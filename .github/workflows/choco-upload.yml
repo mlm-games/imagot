@@ -16,7 +16,7 @@ jobs:
       - name: Download windows build from release
         run: |
           mkdir -p choco-package
-          Invoke-WebRequest "https://github.com/mlm-games/imagot/releases/download/${{ inputs.version_name }}/imagot.exe" -OutFile "choco-package/imagot.x86_64"
+          Invoke-WebRequest "https://github.com/mlm-games/imagot/releases/download/${{ inputs.version_name }}/imagot.exe" -OutFile "choco-package/imagot.exe"
           
       - name: List downloaded files
         shell: pwsh
