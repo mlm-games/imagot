@@ -1,7 +1,11 @@
-name: Publish to AUR
+name: Publish to Chocolatey
 
 on:
   workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version name (e.g., 0.1.2)'
+        required: true
 
 jobs:
   publish-chocolatey:
