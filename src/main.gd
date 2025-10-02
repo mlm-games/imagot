@@ -252,10 +252,10 @@ func _handle_launch_args() -> void:
 		var path: String = args[0] # " ".join(args.slice(1))
 		if FileAccess.file_exists(args[0]):
 			if SUPPORTED_EXTENSIONS.has(path.get_extension()):
-				print("Starter file exists and is supported")
+				print("Starter file exists")
 				load_image(args[0])
 		else:
-			print("NO")
+			print("No starter file by cmd path, open main screen")
 	
 	if current_image_path.is_empty():
 		status_label.text = "Open an image to begin..."
