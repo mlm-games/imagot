@@ -1,3 +1,15 @@
+## v0.2.8
+
+- update to 4.5
+- Create choco-upload.yml
+- change icon path
+- add icon to fastlane
+- add android zooming
+- add condn
+- fix label not allowing button clicks
+- add drag-drop support, A-D for next/prev file, add a first open label
+
+
 ## v0.2.7
 
 - add 2 more icons, delete unused settings addon part by @mlm-games
