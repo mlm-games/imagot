@@ -113,7 +113,7 @@ jobs:
           EOF
       
       - name: Publish to AUR
-        uses: KSXGitHub/github-actions-deploy-aur@master
+        uses: mlm-games/aur-deploy-action@master
         with:
           pkgname: imagot-bin
           pkgbuild: aur-package/PKGBUILD
