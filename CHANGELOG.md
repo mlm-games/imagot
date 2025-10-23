@@ -1,3 +1,9 @@
+## v0.2.10
+
+- Fix path for imagot.desktop installation
+- Modify desktop file path and build process
+
+
 ## v0.2.9
 
 - Rename screenshot4.png to 4.png

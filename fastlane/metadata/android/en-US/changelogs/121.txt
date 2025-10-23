@@ -1,0 +1,2 @@
+- Fix path for imagot.desktop installation
+- Modify desktop file path and build process
