@@ -43,7 +43,7 @@ parts:
       - libpulse0
     override-build: |
       craftctl default
-      install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/imagot.desktop" "$CRAFT_PART_INSTALL/imagot.desktop"
+      install -Dm644 "$CRAFT_PROJECT_DIR/gui/imagot.desktop" "$CRAFT_PART_INSTALL/imagot.desktop"
       chmod +x "$CRAFT_PART_INSTALL/imagot"
 
 layout:
