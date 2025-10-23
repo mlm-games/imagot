@@ -19,9 +19,9 @@ An PoC image viewer in Godot
 ## 🖼️ Screenshots
 
 <div align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png" width="30%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png" width="30%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="30%">
 </div>
 
 ## Features
