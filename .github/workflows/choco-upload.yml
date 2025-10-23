@@ -4,87 +4,73 @@ on:
   workflow_dispatch:
     inputs:
       version_name:
-        description: 'Version name (e.g., 0.1.2)'
+        description: 'Version name (e.g., 0.2.7)'
         required: true
 
+concurrency:
+  group: choco-${{ inputs.version_name }}
+  cancel-in-progress: false
+
 jobs:
-  publish-chocolatey:
+  publish:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Download windows build from release
-        run: |
-          mkdir -p choco-package
-          Invoke-WebRequest "https://github.com/mlm-games/imagot/releases/download/${{ inputs.version_name }}/imagot.exe" -OutFile "choco-package/imagot.exe"
-          
-      - name: List downloaded files
+
+      - name: Preflight | Check release + asset
         shell: pwsh
         run: |
-          Write-Output "Files in choco-package:"
-          Get-ChildItem -Path ".\choco-package" -Recurse
+          $tagUrl = "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ inputs.version_name }}"
+          try { Invoke-RestMethod $tagUrl | Out-Null } catch { throw "Release tag '${{ inputs.version_name }}' not found." }
 
-      - name: Generate checksums if missing
+          $assetUrl = "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe"
+          try { Invoke-WebRequest $assetUrl -Method Head -UseBasicParsing | Out-Null } catch { throw "Release asset imagot.exe not found at $assetUrl" }
+
+      - name: Preflight | Check secret
+        shell: pwsh
+        env:
+          CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
+        run: |
+          if (-not $env:CHOCO_API_KEY) { throw "Missing secret CHOCO_API_KEY" }
+
+      - name: Download Windows exe
         shell: pwsh
         run: |
-          if (-not (Test-Path ".\choco-package\SHA256SUMS.txt")) {
-            Write-Output "SHA256SUMS.txt not found, generating checksums..."
-            $files = Get-ChildItem -Path ".\choco-package" -File
-            $checksumContent = @()
-            $checksumContent += "# SHA256 Checksums for Windows Desktop"
-            $checksumContent += "Generated on $(Get-Date)"
-            $checksumContent += ""
+          New-Item -ItemType Directory -Force -Path .\choco-package | Out-Null
+          $url = "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe"
+          Invoke-WebRequest $url -OutFile ".\choco-package\imagot.exe"
 
-            foreach ($file in $files) {
-              $hash = Get-FileHash -Path $file.FullName -Algorithm SHA256
-              $checksumContent += "$($hash.Hash.ToLower())  $($file.Name)"
-              Write-Output "File: $($file.Name)"
-              Write-Output "SHA256: $($hash.Hash.ToLower())"
-            }
-
-            $checksumContent | Out-File -FilePath ".\choco-package\SHA256SUMS.txt" -Encoding UTF8
-          }
+      - name: Generate checksum
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash -Path ".\choco-package\imagot.exe" -Algorithm SHA256).Hash.ToLower()
+          "@($hash)  imagot.exe" | Out-File -FilePath ".\choco-package\SHA256SUMS.txt" -Encoding utf8
+          Write-Host "SHA256: $hash"
 
       - name: Setup Chocolatey
         uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: -v
 
-      - name: Update Chocolatey nuspec version
+      - name: Update nuspec version
         shell: pwsh
         run: |
-          $nuspecPath = ".\chocolatey\imagot.nuspec"
-          $content = Get-Content $nuspecPath
-          $content = $content -replace "<version>.*</version>", "<version>${{ inputs.version_name }}</version>"
-          $content | Set-Content $nuspecPath
+          $p = ".\chocolatey\imagot.nuspec"
+          (Get-Content $p) -replace "<version>.*</version>", "<version>${{ inputs.version_name }}</version>" | Set-Content $p
 
-      - name: Update Chocolatey install script
+      - name: Update install script URL + checksum
         shell: pwsh
         run: |
-          # Get the SHA256 hash from the checksums file
-          $checksumFile = Get-Content ".\choco-package\SHA256SUMS.txt"
-          $exeFileName = "imagot.exe"
-          $hashLine = $checksumFile | Where-Object { $_ -match "$exeFileName$" }
-          if ($hashLine) {
-            $hash = ($hashLine -split '\s+')[0]
-            Write-Output "Found hash: $hash for $exeFileName"
-          } else {
-            Write-Error "Could not find hash for $exeFileName in SHA256SUMS.txt"
-            Write-Output "Available files in checksums:"
-            $checksumFile | ForEach-Object { Write-Output $_ }
-            exit 1
-          }
+          $checksumLine = Get-Content ".\choco-package\SHA256SUMS.txt" | Select-Object -First 1
+          $hash = ($checksumLine -split '\s+')[0]
+          $install = ".\chocolatey\tools\chocolateyinstall.ps1"
+          $c = Get-Content $install
+          $c = $c -replace "url\s*=\s*'.*'", "url = 'https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe'"
+          $c = $c -replace "checksum\s*=\s*'.*'", "checksum = '$hash'"
+          $c | Set-Content $install
+          Write-Host "Updated chocolateyinstall.ps1"
 
-          # Update the chocolateyinstall.ps1 file
-          $installPath = ".\chocolatey\tools\chocolateyinstall.ps1"
-          $content = Get-Content $installPath
-          $content = $content -replace "url\s*=\s*'.*'", "url = 'https://github.com/mlm-games/imagot/releases/download/${{ inputs.version_name }}/imagot.exe'"
-          $content = $content -replace "checksum\s*=\s*'.*'", "checksum = '$hash'"
-          $content | Set-Content $installPath
-
-          Write-Output "Updated chocolateyinstall.ps1 with new URL and checksum"
-
-      - name: Pack and push Chocolatey package
+      - name: Pack and push
         shell: pwsh
         env:
           CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
