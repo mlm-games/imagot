@@ -12,40 +12,24 @@
   <url type="homepage">https://github.com/mlm-games/imagot</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png</image>
+      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.9/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png</image>
       <caption>Main Menu Screenshot</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png</image>
-      <caption>Settings screenshot 1</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png</image>
-      <caption>Settings screenshot 2</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png</image>
+      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.9/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png</image>
       <caption>Another screenshot</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/5.png</image>
+      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.9/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png</image>
       <caption>Another screenshot</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/6.png</image>
-      <caption>Another screenshot</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/7.png</image>
-      <caption>Another screenshot</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.2/fastlane/metadata/android/en-US/images/phoneScreenshots/8.png</image>
+      <image>https://raw.githubusercontent.com/mlm-games/imagot/refs/tags/0.2.9/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png</image>
       <caption>Another screenshot</caption>
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.2.2" date="2025-06-08">
+    <release version="0.2.9" date="2025-23-10">
       <url type="details">https://github.com/mlm-games/imagot/releases</url>
     </release>
   </releases>
