@@ -31,7 +31,7 @@ jobs:
 
       - name: Fetch Linux binary (with fallback)
         run: |
-          mkdir -p builds
+          mkdir -p snap/builds
           set -e
           echo "Fetch 'imagot.x86_64'..."
           curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.x86_64" -o snap/builds/imagot
