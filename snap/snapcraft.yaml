@@ -27,7 +27,7 @@ apps:
       - desktop
       - desktop-legacy
       - unity7
-    desktop: snap/gui/imagot.desktop
+    desktop: gui/imagot.desktop
 
 parts:
   imagot:
