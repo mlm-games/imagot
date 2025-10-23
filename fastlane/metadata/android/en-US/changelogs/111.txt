@@ -1,0 +1,16 @@
+- Rename screenshot4.png to 4.png
+- Rename screenshot3.png to 3.png
+- Rename screenshot2.png to 2.png
+- Rename screenshot1.png to 1.png
+- Rename snapcraft.yml to snapcraft.yaml
+- Refactor snap-upload.yml to simplify binary fetch
+- Refactor release workflow for cross-platform support
+- Add GitHub Actions workflow for Snapcraft publishing
+- Add workflow to update Scoop bucket with new version
+- Add GitHub Actions workflow for WinGet publishing
+- Delete .github/workflows/test-choco-upload.yml
+- Add Test GitHub Actions workflow for Chocolatey publishing
+- Add version trackers section to README
+- Revise README with installation details and badges
+- Enhance README with badges and installation info
+- misc backend improvements
