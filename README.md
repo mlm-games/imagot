@@ -2,65 +2,109 @@
 
 An PoC image viewer in Godot
 
-<p align="center">
-  <a href="https://flathub.org/apps/io.github.mlm_games.imagot">
-    <img src="https://flathub.org/assets/badges/flathub-badge-en.svg" height="54" alt="Get it on Flathub">
-  </a>
-  <a href="https://snapcraft.io/imagot">
-    <img src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" height="54" alt="Get it from the Snap Store">
-  </a>
-</p>
-<p align="center">
-  
-  <a href="https://community.chocolatey.org/packages/imagot">
-    <img src="https://img.shields.io/badge/Get%20it%20on-Chocolatey-80B5E3?style=for-the-badge&logo=chocolatey&logoColor=white" height="80" alt="Get it on Chocolatey">
-  </a>
-  <a href="https://github.com/mlm-games/imagot/releases/latest">
-    <img src="https://img.shields.io/badge/Get%20it%20on-GitHub%20Releases-24292e?style=for-the-badge&logo=github&logoColor=white" height="80" alt="Get it on GitHub Releases">
-  </a>
-</p>
+<div align="center">
 
-<p align="center">
-  <a href="https://aur.archlinux.org/packages/imagot-bin">
-    <img src="https://img.shields.io/badge/Get%20it%20on-AUR-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" height="80" alt="Get it on AUR (imagot-bin)">
-  </a>
-  <a href="https://winget.run/pkg/MLMGames/Imagot">
-    <img src="https://img.shields.io/badge/Install%20via-WinGet-0078D6?style=for-the-badge&logo=windows&logoColor=white" height="80" alt="Install via WinGet">
-  </a>
-  <a href="https://github.com/mlm-games/buckets-scoop">
-    <img src="https://img.shields.io/badge/Install%20via-Scoop-2A6F97?style=for-the-badge&logo=windows-terminal&logoColor=white" height="80" alt="Install via Scoop">
-  </a>
-</p>
-
-<!-- Optional screenshots (uncomment if you keep these paths stable)
-<p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot 1" width="24%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Screenshot 2" width="24%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Screenshot 3" width="24%">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Screenshot 4" width="24%">
-</p>
+[![GitHub Release](https://img.shields.io/github/v/release/mlm-games/imagot?style=for-the-badge&logo=github&label=GitHub&color=181717)](https://github.com/mlm-games/imagot/releases/latest)
+<!--[![Flathub Version](https://img.shields.io/flathub/v/io.github.mlm_games.imagot?style=for-the-badge&logo=flathub&label=Flathub&color=4a86cf)](https://flathub.org/apps/io.github.mlm_games.imagot)
 -->
+[![AUR Version](https://img.shields.io/aur/version/imagot-bin?style=for-the-badge&logo=archlinux&label=AUR&color=1793d1)](https://aur.archlinux.org/packages/imagot-bin)
+
+<!--[![Snap Version](https://img.shields.io/snapcraft/v/imagot?style=for-the-badge&logo=snapcraft&label=Snap&color=82BEA0)](https://snapcraft.io/imagot)
+-->
+[![Chocolatey Version](https://img.shields.io/chocolatey/v/imagot?style=for-the-badge&logo=chocolatey&label=Chocolatey&color=80b5e3)](https://community.chocolatey.org/packages/imagot)
+[![WinGet Version](https://img.shields.io/badge/WinGet-Available-blue?style=for-the-badge&logo=microsoft)](https://github.com/microsoft/winget-pkgs/tree/master/manifests/m/MLMGames/Imagot)
+
+</div>
+
+## 🖼️ Screenshots
+
+<div align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png" width="30%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png" width="30%">
+</div>
 
 ## Features
-- View common formats: PNG, JPG/JPEG, WebP, BMP, TGA, SVG, EXR, HDR
-- Zoom, pan, fit, 1:1, rotate, flip
-- Keyboard navigation; drag‑and‑drop files
-- Lightweight UI (Godot 4.x)
 
-## Install
-- Flathub: flatpak install flathub io.github.mlm_games.imagot
-- Snap: snap install imagot
-- Chocolatey: choco install imagot
-- WinGet: winget install MLMGames.Imagot
-- AUR: yay -S imagot-bin
-- Scoop:
-  - scoop bucket add mlm https://github.com/mlm-games/buckets-scoop
-  - scoop install imagot
-- Direct: GitHub Releases (portable binaries)
+- **Format Support** - PNG, JPG, JPEG, WebP, BMP, TGA, SVG, EXR, HDR
+- **Basic Operations** - Zoom, pan, rotate, flip
+- **Keyboard Navigation** - Browse images in folder with arrow keys
+- **Drag & Drop** - Open images by dragging onto window
+- **Lightweight** - Fast startup and minimal resource usage
 
-## Usage
-- Open a file or drag & drop into the window.
-- Shortcuts: Ctrl+= / Ctrl+- (zoom), Ctrl+0 (fit), Ctrl+1 (actual size), Ctrl+L / Ctrl+R (rotate), H / V (flip), Left/Right (prev/next).
+## Installation
+
+### Windows
+
+```powershell
+# WinGet
+winget install MLMGames.Imagot
+
+# Chocolatey
+choco install imagot
+
+# Scoop
+scoop bucket add mlm-games https://github.com/mlm-games/buckets-scoop
+scoop install imagot
+```
+
+### Linux
+
+```bash
+# Flatpak (Flathub)
+flatpak install flathub io.github.mlm_games.imagot
+
+# Snap
+sudo snap install imagot
+
+# AUR (Arch Linux)
+yay -S imagot-bin
+```
+
+### macOS & Others
+
+Download from [GitHub Releases](https://github.com/mlm-games/imagot/releases/latest)
+
+## Keyboard Shortcuts
+
+| Action | Shortcut |
+|--------|----------|
+| Open File | `Ctrl+O` |
+| Zoom In/Out | `Ctrl+`/`Ctrl-` |
+| Fit to Window | `Ctrl+0` |
+| Actual Size | `Ctrl+1` |
+| Rotate Left/Right | `Ctrl+L`/`Ctrl+R` |
+| Flip Horizontal/Vertical | `H`/`V` |
+| Next/Previous Image | `→`/`←` or `D`/`A` |
+| Image Properties | `Ctrl+I` |
+| Toggle Fullscreen | `F11` |
+
+## Building from Source
+
+Requirements:
+- Godot 4.5+
+- Git
+
+```bash
+# Clone repository
+git clone https://github.com/mlm-games/imagot
+cd imagot
+
+# Open in Godot Editor
+godot project.godot
+
+# Or build from command line
+godot --export-release "Linux" builds/imagot
+```
 
 ## License
-AGPL‑3.0‑or‑later — see LICENSE.
+
+[GPL-3.0](LICENSE)
+
+---
+
+<div align="center">
+
+Made with Godot Engine
+
+</div>
