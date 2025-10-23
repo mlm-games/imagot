@@ -97,6 +97,18 @@ godot project.godot
 godot --export-release "Linux" builds/imagot
 ```
 
+## Version Trackers
+
+| Platform   | Version |
+|:-----------|:--------|
+| F-Droid    |  There are better alts for mobiles |
+| Flathub    | [![Flathub Version](https://img.shields.io/flathub/v/io.github.mlm_games.imagot)](https://flathub.org/apps/io.github.mlm_games.imagot) |
+| Snap Store | [![Snapcraft Version](https://img.shields.io/snapcraft/v/imagot/latest/stable)](https://snapcraft.io/imagot) |
+| AUR        | [![AUR Version](https://img.shields.io/aur/version/imagot-bin)](https://aur.archlinux.org/packages/imagot-bin) |
+| WinGet     | ![WinGet Package Version](https://img.shields.io/winget/v/MLMGames.Imagot) |
+| Chocolatey | [![Chocolatey Version](https://img.shields.io/chocolatey/v/imagot)](https://community.chocolatey.org/packages/imagot) |
+| Scoop      | [![Scoop Version](https://img.shields.io/scoop/v/imagot?bucket=https://github.com/mlm-games/buckets-scoop)](https://github.com/mlm-games/buckets-scoop) |
+
 ## License
 
 [GPL-3.0](LICENSE)
