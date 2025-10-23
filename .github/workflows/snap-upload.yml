@@ -33,12 +33,8 @@ jobs:
         run: |
           mkdir -p builds
           set -e
-          if curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot" -o builds/imagot; then
-            echo "Downloaded 'imagot'"
-          else
-            echo "Trying fallback 'imagot.x86_64'..."
-            curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.x86_64" -o builds/imagot
-          fi
+          echo "Fetch 'imagot.x86_64'..."
+          curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.x86_64" -o builds/imagot
           chmod +x builds/imagot
 
       - name: Prepare snap assets
@@ -54,6 +50,8 @@ jobs:
       - name: Build snap
         uses: snapcore/action-build@v1
         id: build
+        with:
+          path: snap
 
       - name: Publish to Snap Store
         uses: snapcore/action-publish@v1
