@@ -27,7 +27,7 @@ apps:
       - desktop
       - desktop-legacy
       - unity7
-    desktop: gui/imagot.desktop
+    desktop: imagot.desktop
 
 parts:
   imagot:
@@ -42,8 +42,9 @@ parts:
       - libxi6
       - libpulse0
     override-build: |
-      snapcraftctl build
-      chmod +x $SNAPCRAFT_PART_INSTALL/imagot
+      craftctl default
+      install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/imagot.desktop" "$CRAFT_PART_INSTALL/imagot.desktop"
+      chmod +x "$CRAFT_PART_INSTALL/imagot"
 
 layout:
   /usr/share/imagot:
