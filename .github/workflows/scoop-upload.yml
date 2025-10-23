@@ -1,0 +1,74 @@
+name: Update Scoop Bucket
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version name (e.g., 0.2.7)'
+        required: true
+      bucket_repo:
+        description: 'Scoop bucket repo (owner/repo)'
+        required: false
+        default: '${{ github.repository_owner }}/buckets-scoop'
+
+concurrency:
+  group: scoop-${{ inputs.version_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preflight | Check release + asset
+        run: |
+          curl -fsSL "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ inputs.version_name }}" >/dev/null
+          curl -IfsSL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe" >/dev/null
+
+      - name: Preflight | Check secret
+        env:
+          SCOOP_TOKEN: ${{ secrets.SCOOP_TOKEN }}
+        run: |
+          [ -n "$SCOOP_TOKEN" ] || { echo "Missing secret SCOOP_TOKEN" >&2; exit 1; }
+
+      - name: Download Windows exe
+        run: |
+          mkdir -p windows-build
+          curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe" -o windows-build/imagot.exe
+
+      - name: Ensure jq present
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq
+
+      - name: Compute SHA256
+        id: hash
+        run: |
+          echo "sha256=$(sha256sum windows-build/imagot.exe | cut -d ' ' -f1)" >> $GITHUB_OUTPUT
+
+      - name: Checkout Scoop bucket
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.bucket_repo }}
+          token: ${{ secrets.SCOOP_TOKEN }}
+          path: scoop-bucket
+
+      - name: Update manifest
+        run: |
+          cd scoop-bucket/bucket
+          jq --arg version "${{ inputs.version_name }}" \
+             --arg hash "${{ steps.hash.outputs.sha256 }}" \
+             --arg url "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.exe" \
+             '.version = $version
+              | .architecture."64bit".url = $url
+              | .architecture."64bit".hash = $hash' \
+             imagot.json > imagot.json.tmp && mv imagot.json.tmp imagot.json
+          echo "Updated imagot.json"
+
+      - name: Commit and push
+        run: |
+          cd scoop-bucket
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add bucket/imagot.json
+          git commit -m "Update Imagot to ${{ inputs.version_name }}"
+          git push
