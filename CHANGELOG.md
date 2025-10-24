@@ -1,3 +1,8 @@
+## v0.2.11
+
+
+
+
 ## v0.2.10
 
 - Fix path for imagot.desktop installation
