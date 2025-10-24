@@ -115,7 +115,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        platform: ["Windows Desktop", "Linux", "Linux arm64", "Web", "Android arm32", "Android arm64", "Android x86 and x86 64", "macOS"]
+        platform: ["Windows Desktop", "Linux", "Linux arm64", "Web", "Android arm32", "Android arm64", "Android x86 and x86 64", "macOS", "PCK/ZIP"]
       fail-fast: false
       max-parallel: 1
 
@@ -158,7 +158,7 @@ jobs:
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.workspace }}/builds/*
+          files: ${{ github.workspace }}/builds/**/*
           name: ${{ inputs.version_name }}
           tag_name: ${{ inputs.version_name }}
           body_path: ./fastlane/metadata/android/en-US/changelogs/${{ needs.commit-vercode-changes.outputs.new_version_code }}.txt
@@ -169,16 +169,13 @@ jobs:
       - name: Generate SHA256 checksums
         shell: bash
         run: |
-          cd ${{ github.workspace }}/builds/
-
-          # Create checksums file
+          cd "${{ github.workspace }}/builds/"
           echo "# SHA256 Checksums for ${{ matrix.platform }}" > SHA256SUMS.txt
-          echo "Generated on $(date)" >> SHA256SUMS.txt
+          echo "Generated on $(date -u)" >> SHA256SUMS.txt
           echo "" >> SHA256SUMS.txt
-
-          # Calculate checksums for each file and append to checksums file
-          for file in *; do
-            if [ -f "$file" ] && [ "$file" != "SHA256SUMS.txt" ]; then
+          shopt -s globstar nullglob
+          for file in **/*; do
+            if [ -f "$file" ] && [ "$(basename "$file")" != "SHA256SUMS.txt" ]; then
               HASH=$(sha256sum "$file" | cut -d ' ' -f 1)
               echo "$HASH  $file" >> SHA256SUMS.txt
               echo "File: $file"
@@ -303,3 +300,4 @@ jobs:
             });
 
             console.log('Triggered AUR publish workflow for version ${{ inputs.version_name }}');
+            
