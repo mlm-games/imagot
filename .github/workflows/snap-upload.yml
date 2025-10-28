@@ -39,8 +39,8 @@ jobs:
 
       - name: Prepare snap assets
         run: |
-          mkdir -p snap/gui
-          cp icon.png snap/gui/icon.png
+          mkdir -p snap/meta/gui
+          cp icon.png snap/meta/gui/icon.png
 
       - name: Update version in snapcraft.yml
         run: |
