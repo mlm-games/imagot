@@ -32,15 +32,15 @@ jobs:
       - name: Fetch Linux binary (with fallback)
         run: |
           mkdir -p snap/builds
+          
+          mkdir -p snap/gui
+          cp others/flathub/io.github.mlm_games.imagot.desktop snap/gui/imagot.desktop
+          cp icon.png snap/gui/icon.png
+          
           set -e
           echo "Fetch 'imagot.x86_64'..."
           curl -fL "https://github.com/${{ github.repository }}/releases/download/${{ inputs.version_name }}/imagot.x86_64" -o snap/builds/imagot
           chmod +x snap/builds/imagot
-
-      - name: Prepare snap assets
-        run: |
-          mkdir -p snap/meta/gui
-          cp icon.png snap/meta/gui/icon.png
 
       - name: Update version in snapcraft.yml
         run: |
