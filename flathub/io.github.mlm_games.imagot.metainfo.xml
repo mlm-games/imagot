@@ -28,9 +28,18 @@
       <caption>Another screenshot</caption>
     </screenshot>
   </screenshots>
-  <releases>
+  <release version="0.2.13" date="2025-11-01" type="stable">
+      <description>
+        <ul>
+          <li>fix metainfo path (for update notes)</li>
+        </ul>
+      </description>
+      <url type="details">https://github.com/mlm-games/imagot/releases/tag/0.2.13</url>
+    </release>
+
     <release version="0.2.10" date="2025-10-23">
-    <release/>
+      <url type="details">https://github.com/mlm-games/imagot/releases/tag/0.2.10</url>
+    </release>
   </releases>
   <content_rating type="oars-1.1"/>
   <developer id="io.github.mlm_games">
