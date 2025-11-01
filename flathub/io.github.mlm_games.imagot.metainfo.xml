@@ -29,6 +29,13 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.2.16" date="2025-11-01" type="stable">
+      <description>
+        <ul>
+          <li>update .desktop to use imagot as exec name</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.15" date="2025-11-01" type="stable">
       <description>
         <ul>

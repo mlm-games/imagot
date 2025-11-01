@@ -1,3 +1,8 @@
+## v0.2.16
+
+- update .desktop to use imagot as exec name
+
+
 ## v0.2.15
 
 

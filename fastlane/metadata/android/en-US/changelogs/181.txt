@@ -1,0 +1,1 @@
+- update .desktop to use imagot as exec name
