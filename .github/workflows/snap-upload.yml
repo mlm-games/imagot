@@ -34,8 +34,8 @@ jobs:
           mkdir -p snap/builds
           
           mkdir -p snap/gui
-          cp flathub/io.github.mlm_games.imagot.desktop snap/gui/imagot.desktop
-          cp icon.png snap/gui/icon.png
+          cp flathub/io.github.mlm_games.imagot.desktop snap/snap/gui/imagot.desktop
+          cp icon.png snap/snap/gui/icon.png
           
           set -e
           echo "Fetch 'imagot.x86_64'..."
