@@ -79,7 +79,7 @@ jobs:
           exclude-patterns: 'Update ,Merge ,Auto-generate changelog'
           auto-commit: 'true'
           commit-message: 'Update release notes for v{{version}}'
-          metainfo-path: './others/flathub/io.github.mlm_games.imagot.metainfo.xml'  # TODO: Change here when copying
+          metainfo-path: './flathub/io.github.mlm_games.imagot.metainfo.xml'  # TODO: Change here when copying
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -115,7 +115,7 @@ jobs:
       contents: write
     strategy:
       matrix:
-        platform: ["Windows Desktop", "Linux", "Linux arm64", "Web", "Android arm32", "Android arm64", "Android x86 and x86 64", "macOS", "PCK/ZIP"]
+        platform: ["Windows Desktop", "Linux", "Linux arm64", "Web", "Android arm32", "Android arm64", "Android x86 and x86 64", "macOS"]
       fail-fast: false
       max-parallel: 1
 
@@ -158,7 +158,7 @@ jobs:
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.workspace }}/builds/**/*
+          files: ${{ github.workspace }}/builds/*
           name: ${{ inputs.version_name }}
           tag_name: ${{ inputs.version_name }}
           body_path: ./fastlane/metadata/android/en-US/changelogs/${{ needs.commit-vercode-changes.outputs.new_version_code }}.txt
