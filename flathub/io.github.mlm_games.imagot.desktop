@@ -2,7 +2,7 @@
 Name=Imagot
 GenericName=Imagot
 Comment=Image viewer made in Godot!
-Exec=imagot %F
+Exec=godot-runner %F
 Icon=io.github.mlm_games.imagot
 Terminal=false
 Type=Application
