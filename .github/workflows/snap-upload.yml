@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p snap/builds
           
-          mkdir -p snap/gui
+          mkdir -p snap/snap/gui
           cp flathub/io.github.mlm_games.imagot.desktop snap/snap/gui/imagot.desktop
           cp icon.png snap/snap/gui/icon.png
           
