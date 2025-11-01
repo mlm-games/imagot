@@ -29,6 +29,11 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.2.17" date="2025-11-01" type="stable">
+      <description>
+        <ul/>
+      </description>
+    </release>
     <release version="0.2.16" date="2025-11-01" type="stable">
       <description>
         <ul>
