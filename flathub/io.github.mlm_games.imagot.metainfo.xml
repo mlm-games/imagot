@@ -28,6 +28,7 @@
       <caption>Another screenshot</caption>
     </screenshot>
   </screenshots>
+  <releases>
   <release version="0.2.13" date="2025-11-01" type="stable">
       <description>
         <ul>
