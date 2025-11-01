@@ -1,0 +1,1 @@
+- fix metainfo path (for update notes)

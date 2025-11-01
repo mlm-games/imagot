@@ -29,11 +29,16 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.2.10" date="2025-10-23">
-      <url type="details">https://github.com/mlm-games/imagot/releases</url>
-    </release>
+    <release version="0.2.10" date="2025-10-23"><url type="details">https://github.com/mlm-games/imagot/releases</url>&lt;release version="0.2.13" date="2025-11-01" type="stable"&gt;
+  &lt;description&gt;
+    &lt;ul&gt;
+      &lt;li&gt;fix metainfo path (for update notes)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/description&gt;
+&lt;/release&gt;</release>
+    <release/>
   </releases>
-  <content_rating type="oars-1.1"></content_rating>
+  <content_rating type="oars-1.1"/>
   <developer id="io.github.mlm_games">
     <name>MLM Games</name>
   </developer>

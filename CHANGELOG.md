@@ -1,3 +1,8 @@
+## v0.2.13
+
+- fix metainfo path (for update notes)
+
+
 ## v0.2.12
 
 
