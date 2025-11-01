@@ -5,6 +5,7 @@ summary: Fast, lightweight image viewer built with Godot
 description: |
   Imagot is a modern image viewer supporting PNG, JPG, JPEG, WebP, BMP, TGA, SVG, EXR, HDR and more.
   Features include zoom, pan, rotate, flip, undo/redo, and keyboard navigation.
+icon: snap/gui/icon.png
 
 grade: stable
 confinement: strict
